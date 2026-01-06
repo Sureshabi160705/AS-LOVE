@@ -1,0 +1,208 @@
+/* --- Reset & Base Styles --- */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Quicksand', sans-serif;
+    background: linear-gradient(135deg, #ff9a9e 0%, #fecfef 99%, #fecfef 100%);
+    min-height: 100vh;
+    overflow-x: hidden; /* Prevent horizontal scroll */
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+/* --- Background Hearts Animation --- */
+#hearts-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none; /* Let clicks pass through */
+    z-index: 0;
+}
+
+.floating-heart {
+    position: absolute;
+    bottom: -10vh;
+    font-size: 2rem;
+    opacity: 0.6;
+    animation: floatUpBackground 10s linear infinite;
+}
+
+/* --- Header --- */
+.main-container {
+    z-index: 10;
+    width: 90%;
+    max-width: 1200px;
+    text-align: center;
+    padding: 20px;
+}
+
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 4rem;
+    text-shadow: 2px 2px 4px rgba(0,0,0,0.2);
+    margin-bottom: 10px;
+    color: #d6336c;
+}
+
+.subtitle {
+    font-size: 1.2rem;
+    margin-bottom: 40px;
+    color: #c84b7a;
+}
+
+/* --- Balloon Gallery Layout --- */
+.balloon-gallery {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 50px;
+}
+
+/* --- Balloon Design --- */
+.balloon-wrapper {
+    position: relative;
+    width: 200px;
+    /* Animation: Float up on load, then bob gently */
+    animation: floatIn 1.5s ease-out forwards, bobbing 3s ease-in-out infinite;
+    opacity: 0; /* Hidden initially */
+}
+
+.balloon {
+    background: radial-gradient(circle at 50% 30%, #ff5e62, #ff9966);
+    width: 160px;
+    height: 200px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    margin: 0 auto;
+    box-shadow: inset -10px -10px 20px rgba(0,0,0,0.1), 5px 10px 15px rgba(0,0,0,0.1);
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    color: white;
+    text-align: center;
+    padding: 15px;
+    transition: transform 0.3s;
+}
+
+/* Balloon Knot */
+.balloon::before {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 15px;
+    height: 10px;
+    background: inherit;
+    clip-path: polygon(20% 0%, 80% 0%, 100% 100%, 0% 100%);
+}
+
+/* Balloon String */
+.balloon::after {
+    content: '';
+    position: absolute;
+    bottom: -100px;
+    left: 50%;
+    width: 2px;
+    height: 100px;
+    background: rgba(255, 255, 255, 0.6);
+}
+
+.balloon:hover {
+    transform: scale(1.05);
+    cursor: pointer;
+}
+
+/* Text inside Balloon */
+.milestone-title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.5rem;
+    margin-bottom: 5px;
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.2);
+}
+
+.milestone-date {
+    font-size: 0.9rem;
+    font-weight: 600;
+}
+
+.days-count {
+    font-size: 0.8rem;
+    margin-top: 5px;
+    background: rgba(255,255,255,0.2);
+    padding: 2px 8px;
+    border-radius: 10px;
+}
+
+/* Color Variants for Balloons */
+.balloon.pink { background: radial-gradient(circle at 50% 30%, #ff758c, #ff7eb3); }
+.balloon.red { background: radial-gradient(circle at 50% 30%, #ff416c, #ff4b2b); }
+.balloon.purple { background: radial-gradient(circle at 50% 30%, #cc2b5e, #753a88); }
+.balloon.orange { background: radial-gradient(circle at 50% 30%, #fc4a1a, #f7b733); }
+
+/* --- Music Button --- */
+.music-control {
+    margin-top: 20px;
+}
+
+#music-btn {
+    background: #fff;
+    color: #d6336c;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 20px;
+    font-family: 'Quicksand', sans-serif;
+    font-weight: 600;
+    cursor: pointer;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    transition: background 0.3s;
+}
+
+#music-btn:hover {
+    background: #fecfef;
+}
+
+/* --- Animations --- */
+
+/* Initial entrance */
+@keyframes floatIn {
+    0% { transform: translateY(100vh); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+
+/* Gentle hovering */
+@keyframes bobbing {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+/* Background hearts floating up */
+@keyframes floatUpBackground {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    20% { opacity: 0.6; }
+    100% { transform: translateY(-100px) scale(1); opacity: 0; }
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+    .title { font-size: 3rem; }
+    .balloon-wrapper { width: 150px; }
+    .balloon { width: 130px; height: 160px; }
+    .balloon::after { height: 60px; bottom: -60px; }
+}
+
+/* Marquee styling: set text color to Deep Burgundy */
+marquee {
+    color: #800020 !important;
+}
