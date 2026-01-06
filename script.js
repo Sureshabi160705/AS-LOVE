@@ -35,18 +35,10 @@ const bgMusic = document.getElementById('bg-music');
 const heartsContainer = document.getElementById('hearts-container');
 
 // 1. Helper function to calculate time difference
-function calculateDaysAgo(dateString) {
-    const pastDate = new Date(dateString);
-    const today = new Date();
-    const diffTime = Math.abs(today - pastDate);
-    const diffDays = Math.ceil(diffTime / (1000 * 60 * 60 * 24));
-    return diffDays;
-}
+// (Removed days-difference feature as requested)
 
 // 2. Render Balloons
 milestones.forEach((item, index) => {
-    const daysAgo = calculateDaysAgo(item.date);
-
     // Create Elements
     const wrapper = document.createElement('div');
     wrapper.classList.add('balloon-wrapper');
@@ -58,7 +50,6 @@ milestones.forEach((item, index) => {
         <div class="balloon ${item.color}">
             <div class="milestone-title">${item.title}</div>
             <div class="milestone-date">${item.date}</div>
-            <div class="days-count">${daysAgo} Days Ago</div>
         </div>
     `;
 
